@@ -60,9 +60,15 @@ h1, h4 {
     background-color: rgb(237, 69, 69);
 }
 
-#true-btn:active, #false-btn:active, #submit-btn:active {
+#true-btn:enabled:active, #false-btn:enabled:active, #submit-btn:active {
     box-shadow: none;
     transform: translateY(5px);
+}
+
+button:disabled {
+    background-color: grey !important;
+    box-shadow: 0px 5px 0 rgb(63, 63, 63) !important;
+    cursor: default !important;
 }
 
 #submit-container {
@@ -81,12 +87,14 @@ h1, h4 {
     border: none;
     font-weight: bold;
     color: white;
+
     font-size: 1em;
-    background-color: rgb(150, 148, 148);
-    box-shadow: 0 5px rgb(86, 86, 86);
+    /* background-color: rgb(); */
+    background-color: rgb(59,78,254);
+    box-shadow: 0 5px rgb(18, 32, 158);
 }
 
 #submit-btn:hover {
     cursor: pointer;
-    background-color: rgb(184, 182, 182)
+    background-color: rgb(98, 112, 238);
 }

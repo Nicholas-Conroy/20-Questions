@@ -16,6 +16,9 @@ const questions = [
     "Question 5",
 ]
 
+//to store questions that are answered as true
+const answers = [];
+
 //understand this fully later
 function shuffleQuestions(qList) {
     for (let i = qList.length - 1; i > 0; i--) {
@@ -28,25 +31,31 @@ function shuffleQuestions(qList) {
 
 //submit button only displays after certain number of true/false clicks (currently 5 for testing, will be 20)
 function trueClick(){
+    answers.push(questions[buttonCounter]); //add QID answered as true to answers array
     buttonCounter++;
-    console.log(buttonCounter);
-    if(buttonCounter >= 5){
+    if(buttonCounter >= 5){ //if max is reached, disable both buttons and display the submit button
+        document.getElementById("true-btn").disabled = true;
+        document.getElementById("false-btn").disabled = true;
         submitBtn.style.display = "inline-block";
     }
     else{
-        questionTitle.innerHTML = questions[buttonCounter];
+        questionTitle.innerHTML = questions[buttonCounter]; //next question in array is displayed
     }
 }
 
 function falseClick(){
     buttonCounter++;
-    console.log(buttonCounter);
-    if(buttonCounter >= 5){
+    if(buttonCounter >= 5){ //if max is reached, disable both buttons and display the submit button
+        document.getElementById("true-btn").disabled = true;
+        document.getElementById("false-btn").disabled = true;
         submitBtn.style.display = "inline-block";
     }
     else{
-        questionTitle.innerHTML = questions[buttonCounter];
+        questionTitle.innerHTML = questions[buttonCounter]; //next question in array is displayed
     }
 }
 
+function submitClick(){
+    console.log(answers);
+}
 
