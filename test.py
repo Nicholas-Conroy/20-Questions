@@ -10,16 +10,22 @@ for q in list_of_questions:
     print(q)
     answer = input("True or False? (Enter T/F): ")
     if answer == "T" or answer == "t": 
-        answers.append((answer, q))
+        answers.append(q)
     
 print(answers)
 
 # sample animal has key of number of "True"s and value of list of which QIDs are true for it
-sample_animal1 = {4: ["Q1", "Q4", "Q6", "Q8"]}
-sample_animal2 = {4: ["Q2", "Q4", "Q5", "Q9"]}
-sample_animal3 = {4: ["Q3", "Q7", "Q8", "Q10"]}
 
-samples = [sample_animal1, sample_animal2, sample_animal3]
+class Animal:
+    def __init__(self, num_true, qid_list) -> None:
+        self.num_true = num_true
+        self.qid_list = qid_list
+
+sample_animal1 = Animal(4, ["Q1", "Q4", "Q6", "Q8"])
+sample_animal2 = Animal(4,["Q2", "Q4", "Q5", "Q9"])
+sample_animal3 = Animal(5, ["Q1", "Q3", "Q7", "Q8", "Q10"])
+
+sample_animals = [sample_animal1, sample_animal2, sample_animal3]
 
 num_of_correct_qids = 0
 
@@ -32,19 +38,24 @@ num_of_correct_qids = 0
         
 # not efficient, but can use this method to check and count how many correct QIDs are in the answers list, which can be used to further compare animals
 
-# def closest_animal (samples, answers):
-#     potential_samples = []
-#     for sample in samples:
-#         if sample
-#             potential_samples.
+def closeness_check (samples, answers, num_correct):
+    # potential_samples = []
+    # for sample in samples:
+    #     if sample.num_true == 4:
+    #         potential_samples.append(sample) #animal object is added only if it has the correct number of trues
         
-for idx, item in enumerate(answers):
-    for qid in sample_animal:
-        if qid in item: #where a is a tuple with the t/f and the QID
-            print(f'{qid} is in answers at index {idx}')
-            num_of_correct_qids += 1
+    for idx, item in enumerate(answers):
+        for qid in samples[0].qid_list:
+            if qid in item: #where item is a tuple with the t/f and the QID
+                print(f'{qid} is in answers at index {idx}')
+                num_correct += 1
+    
+    return num_correct
             
-print("Num of correct QIDS: " + str(num_of_correct_qids))
+            
+sample1_closeness = closeness_check(sample_animals, answers, num_of_correct_qids)     
+       
+print("Num of correct QIDS: " + str(sample1_closeness))
 
 
 
