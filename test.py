@@ -38,24 +38,33 @@ num_of_correct_qids = 0
         
 # not efficient, but can use this method to check and count how many correct QIDs are in the answers list, which can be used to further compare animals
 
-def closeness_check (samples, answers, num_correct):
+# for now, returns the amount of correct QIDs for a given sample
+def closeness_check (sample, answers):
     # potential_samples = []
     # for sample in samples:
     #     if sample.num_true == 4:
     #         potential_samples.append(sample) #animal object is added only if it has the correct number of trues
-        
+    
+    num_correct = 0
+    
     for idx, item in enumerate(answers):
-        for qid in samples[0].qid_list:
-            if qid in item: #where item is a tuple with the t/f and the QID
+        for qid in sample.qid_list:
+            if qid == item: 
                 print(f'{qid} is in answers at index {idx}')
                 num_correct += 1
     
     return num_correct
             
             
-sample1_closeness = closeness_check(sample_animals, answers, num_of_correct_qids)     
+sample1_closeness = closeness_check(sample_animals[0], answers)   
+sample2_closeness = closeness_check(sample_animals[1], answers)     
+sample3_closeness = closeness_check(sample_animals[2], answers)     
+  
        
-print("Num of correct QIDS: " + str(sample1_closeness))
+print("Num of correct QIDS for Sample 1: " + str(sample1_closeness))
+print("Num of correct QIDS for Sample 2: " + str(sample2_closeness))
+print("Num of correct QIDS for Sample 3: " + str(sample3_closeness))
+
 
 
 
