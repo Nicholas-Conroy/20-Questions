@@ -6,10 +6,17 @@ h1, h4 {
     text-align: center;
 }
 
+#page-title {
+    margin-top: 1.5em;
+    font-family: "Bowlby One SC", Arial, Helvetica, sans-serif;
+    font-size: 3.5em;
+    color: rgb(42, 62, 241);
+}
+
 #question-container {
     width: 30%;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 7%;
     text-align: center;
     padding: 20px;
@@ -75,7 +82,8 @@ button:disabled {
     width: 50%;
     margin: auto;
     text-align: center;
-    margin-top: 5em !important;
+    margin-top: 5% !important;
+
 }
 
 #submit-btn {
