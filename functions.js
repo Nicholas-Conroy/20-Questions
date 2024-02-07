@@ -56,6 +56,6 @@ function falseClick(){
 }
 
 function submitClick(){
-    console.log(answers);
+    console.log(answers); 
 }
 
