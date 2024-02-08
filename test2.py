@@ -1,7 +1,7 @@
 import random
 import pandas as pd
 
-df = pd.read_csv("zoo2.csv")
+# df = pd.read_csv("zoo2.csv")
 
 list_of_questions = ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10"]
 
@@ -23,7 +23,7 @@ class Animal:
     def __init__(self, num_true, qid_list) -> None:
         self.num_true = num_true
         self.qid_list = qid_list
-        
+
 sample_animal1 = Animal(4, ["Q1", "Q4", "Q6", "Q8"])
 sample_animal2 = Animal(4,["Q2", "Q4", "Q5", "Q9"])
 sample_animal3 = Animal(5, ["Q1", "Q3", "Q7", "Q8", "Q10"])
@@ -39,9 +39,8 @@ num_of_correct_qids = 0
 #     else:
 #         print("not in")
         
+# not efficient, but can use this method to check and count how many correct QIDs are in the answers list, which can be used to further compare animals
 
-#makes a list of the animals that match the correct number of true answers
-#TODO: make this choose the CLOSEST animals, not just the exact match
 def tally_closeness_check (correct_num, sample_list):
     new_list = []
     for animal in sample_list:
@@ -50,7 +49,7 @@ def tally_closeness_check (correct_num, sample_list):
     return new_list
         
 
-#returns the amount of correct QIDs for a given sample
+# for now, returns the amount of correct QIDs for a given sample
 def qid_closeness_check (sample, answers):
     # potential_samples = []
     # for sample in samples:
@@ -68,26 +67,20 @@ def qid_closeness_check (sample, answers):
     return num_correct
             
             
+# sample1_closeness = qid_closeness_check(sample_animals[0], answers)   
+# sample2_closeness = qid_closeness_check(sample_animals[1], answers)     
+# sample3_closeness = qid_closeness_check(sample_animals[2], answers)   
 
-#list of animals that match the number of correct true answers
-potential_animals = tally_closeness_check(len(answers), sample_animals)
+potential_animals = tally_closeness_check(sample_animals)
 
-max_correct_qids = 0
-best_animal:Animal = None
-
-# the animal in the new list with the highest amount of correct QIDs is chosen
-for animal in potential_animals:
-    num_correct = qid_closeness_check(animal, answers)
-    
-    if num_correct > max_correct_qids:
-        max_correct_qids = num_correct
-        best_animal = animal
+# for animal in potential_animals:
+#     animal  
   
-if best_animal is not None:  
-    print(f'The best animal is {best_animal.qid_list}') 
-else:
-    print("no animal is good")
-        
+       
+print("Num of correct QIDS for Sample 1: " + str(sample1_closeness))
+print("Num of correct QIDS for Sample 2: " + str(sample2_closeness))
+print("Num of correct QIDS for Sample 3: " + str(sample3_closeness))
+
 
 
 
