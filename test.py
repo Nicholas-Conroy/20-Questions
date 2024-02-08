@@ -20,15 +20,48 @@ print(answers)
 # sample animal has key of number of "True"s and value of list of which QIDs are true for it
 
 class Animal:
-    def __init__(self, num_true, qid_list) -> None:
+    def __init__(self, name, num_true, qid_list) -> None:
+        self.name = name
         self.num_true = num_true
         self.qid_list = qid_list
+    
+    def get_name(self):
+        return self.name
         
-sample_animal1 = Animal(4, ["Q1", "Q4", "Q6", "Q8"])
-sample_animal2 = Animal(4,["Q2", "Q4", "Q5", "Q9"])
-sample_animal3 = Animal(5, ["Q1", "Q3", "Q7", "Q8", "Q10"])
+sample_animals = [
+    Animal('bird', 4, ["Q1", "Q4", "Q6", "Q8"]),
+    Animal('goose', 4,["Q2", "Q4", "Q5", "Q9"]),
+    Animal('snake', 5, ["Q1", "Q3", "Q7", "Q8", "Q10"]),
+    Animal('moose', 4, ["Q1", "Q4", "Q6", "Q8"]),
+    Animal('cat', 7, ["Q2", "Q3", "Q5", "Q7", "Q9", "Q10", "Q11"]),
+    Animal('dog', 5, ["Q1", "Q2", "Q5", "Q7", "Q10"]),
+Animal('elephant', 10, ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10"]),
+Animal('lion', 3, ["Q3", "Q6", "Q9"]),
+Animal('tiger', 8, ["Q2", "Q4", "Q6", "Q8", "Q10", "Q12", "Q14", "Q16"]),
+Animal('rabbit', 2, ["Q1", "Q5"]),
+ Animal('snake', 6, ["Q2", "Q4", "Q6", "Q8", "Q10", "Q12"]),
+ Animal('monkey', 9, ["Q1", "Q3", "Q5", "Q7", "Q9", "Q11", "Q13", "Q15", "Q17"]),
+  Animal('horse', 1, ["Q10"]),
+   Animal('penguin', 6, ["Q2", "Q4", "Q6", "Q8", "Q10", "Q12"]),
+    Animal('koala', 3, ["Q1", "Q3", "Q5"]),
+ Animal('dolphin', 8, ["Q1", "Q3", "Q5", "Q7", "Q9", "Q11", "Q13", "Q15"]),
+Animal('shark', 5, ["Q2", "Q4", "Q6", "Q8", "Q10"]),
+Animal('bear', 7, ["Q3", "Q6", "Q9", "Q12", "Q15", "Q18", "Q21"]),
+Animal('frog', 2, ["Q2", "Q4"]),
+ Animal('cheetah', 9, ["Q1", "Q3", "Q5", "Q7", "Q9", "Q11", "Q13", "Q15", "Q17"]),
+ Animal('elephant', 4, ["Q2", "Q4", "Q6", "Q8"]),
+ Animal('giraffe', 10, ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10"]),
+Animal('wolf', 1, ["Q1"])
+]        
 
-sample_animals = [sample_animal1, sample_animal2, sample_animal3]
+
+
+
+
+
+
+
+# sample_animals = [sample_animal1, sample_animal2, sample_animal3]
 
 num_of_correct_qids = 0
 
@@ -84,7 +117,7 @@ for animal in potential_animals:
         best_animal = animal
   
 if best_animal is not None:  
-    print(f'The best animal is {best_animal.qid_list}') 
+    print(f'The best animal is {best_animal.get_name()}') 
 else:
     print("no animal is good")
         
