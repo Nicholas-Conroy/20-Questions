@@ -104,8 +104,8 @@ def qid_closeness_check (sample, answers):
 
 #list of animals that match the number of correct true answers
 potential_animals = tally_closeness_check(len(answers), sample_animals)
-# print(potential_animals)
-[print(i.get_name() + '\n', end=' ') for i in potential_animals] # print animals that mactched the tally
+print("Possible animals: ", end=' ')
+[print(i.get_name(), end=', ') for i in potential_animals] # print animals that mactched the tally
 
 
 max_correct_qids = 0
@@ -120,9 +120,9 @@ for animal in potential_animals:
         best_animal = animal
   
 if best_animal is not None:  
-    print(f'The best animal is {best_animal.get_name()}') 
+    print(f'\nThe best animal is {best_animal.get_name()}') 
 else:
-    print("no animal is good")
+    print("\nno animal is good")
         
 
 
