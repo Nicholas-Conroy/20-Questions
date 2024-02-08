@@ -32,26 +32,26 @@ sample_animals = [
     Animal('bird', 4, ["Q1", "Q4", "Q6", "Q8"]),
     Animal('goose', 4,["Q2", "Q4", "Q5", "Q9"]),
     Animal('snake', 5, ["Q1", "Q3", "Q7", "Q8", "Q10"]),
-    Animal('moose', 4, ["Q1", "Q4", "Q6", "Q8"]),
-    Animal('cat', 7, ["Q2", "Q3", "Q5", "Q7", "Q9", "Q10", "Q11"]),
+    Animal('moose', 4, ["Q1", "Q4", "Q9", "Q8"]),
+    Animal('cat', 7, ["Q2", "Q3", "Q5", "Q7", "Q9", "Q10", "Q1"]), 
     Animal('dog', 5, ["Q1", "Q2", "Q5", "Q7", "Q10"]),
-Animal('elephant', 10, ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10"]),
-Animal('lion', 3, ["Q3", "Q6", "Q9"]),
-Animal('tiger', 8, ["Q2", "Q4", "Q6", "Q8", "Q10", "Q12", "Q14", "Q16"]),
-Animal('rabbit', 2, ["Q1", "Q5"]),
- Animal('snake', 6, ["Q2", "Q4", "Q6", "Q8", "Q10", "Q12"]),
- Animal('monkey', 9, ["Q1", "Q3", "Q5", "Q7", "Q9", "Q11", "Q13", "Q15", "Q17"]),
-  Animal('horse', 1, ["Q10"]),
-   Animal('penguin', 6, ["Q2", "Q4", "Q6", "Q8", "Q10", "Q12"]),
+    Animal('elephant', 10, ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10"]),
+    Animal('lion', 3, ["Q3", "Q6", "Q9"]),
+    Animal('tiger', 8, ["Q2", "Q4", "Q6", "Q8", "Q10", "Q3", "Q7", "Q9"]),
+    Animal('rabbit', 2, ["Q1", "Q5"]),
+    Animal('snake', 6, ["Q2", "Q4", "Q6", "Q8", "Q10", "Q9"]),
+    Animal('monkey', 9, ["Q1", "Q3", "Q8", "Q7", "Q9", "Q2", "Q10", "Q4", "Q6"]),
+    Animal('horse', 1, ["Q10"]),
+    Animal('penguin', 6, ["Q2", "Q4", "Q6", "Q8", "Q10", "Q7"]),
     Animal('koala', 3, ["Q1", "Q3", "Q5"]),
- Animal('dolphin', 8, ["Q1", "Q3", "Q5", "Q7", "Q9", "Q11", "Q13", "Q15"]),
-Animal('shark', 5, ["Q2", "Q4", "Q6", "Q8", "Q10"]),
-Animal('bear', 7, ["Q3", "Q6", "Q9", "Q12", "Q15", "Q18", "Q21"]),
-Animal('frog', 2, ["Q2", "Q4"]),
- Animal('cheetah', 9, ["Q1", "Q3", "Q5", "Q7", "Q9", "Q11", "Q13", "Q15", "Q17"]),
- Animal('elephant', 4, ["Q2", "Q4", "Q6", "Q8"]),
- Animal('giraffe', 10, ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10"]),
-Animal('wolf', 1, ["Q1"])
+    Animal('dolphin', 8, ["Q1", "Q3", "Q5", "Q7", "Q9", "Q10", "Q8", "Q4"]),
+    Animal('shark', 5, ["Q2", "Q4", "Q6", "Q8", "Q10"]),
+    Animal('bear', 7, ["Q3", "Q6", "Q9", "Q1", "Q5", "Q8", "Q2"]),
+    Animal('frog', 2, ["Q2", "Q4"]),
+    Animal('cheetah', 9, ["Q1", "Q3", "Q5", "Q7", "Q9", "Q4", "Q10", "Q2", "Q6"]),
+    Animal('elephant', 4, ["Q2", "Q10", "Q6", "Q7"]),
+    Animal('giraffe', 10, ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10"]),
+    Animal('wolf', 1, ["Q1"])
 ]        
 
 
@@ -95,7 +95,7 @@ def qid_closeness_check (sample, answers):
     for idx, item in enumerate(answers):
         for qid in sample.qid_list:
             if qid == item: 
-                print(f'{qid} is in answers at index {idx}')
+                # print(f'{qid} is in answers at index {idx}')
                 num_correct += 1
     
     return num_correct
@@ -104,6 +104,9 @@ def qid_closeness_check (sample, answers):
 
 #list of animals that match the number of correct true answers
 potential_animals = tally_closeness_check(len(answers), sample_animals)
+# print(potential_animals)
+[print(i.get_name() + '\n', end=' ') for i in potential_animals] # print animals that mactched the tally
+
 
 max_correct_qids = 0
 best_animal:Animal = None
@@ -123,7 +126,10 @@ else:
         
 
 
-
+# Other TODOS:
+#  - random tiebreaker if animals are still tied
+#  - make a guess no matter what
+#  - find closest match for first phase of matching, top 3 closest maybe?
 
 
 ####### Overall Process Idea ########## 
