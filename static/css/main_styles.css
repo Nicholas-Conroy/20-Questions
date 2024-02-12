@@ -17,7 +17,7 @@ h1, h4 {
     width: 30%;
     margin: auto;
     margin-top: 5%;
-    margin-bottom: 7%;
+    margin-bottom: 5%;
     text-align: center;
     padding: 20px;
     border-radius: 10px;
@@ -82,8 +82,6 @@ button:disabled {
     width: 50%;
     margin: auto;
     text-align: center;
-    margin-top: 5% !important;
-
 }
 
 #submit-btn {
@@ -109,4 +107,8 @@ button:disabled {
 
 #results-container {
     display: none;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    margin-top: 50px !important;
 }
