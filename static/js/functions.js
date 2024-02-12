@@ -57,5 +57,37 @@ function falseClick(){
 
 function submitClick(){
     console.log(answers); 
+
+    // fetch('/process') //get data from flask app route that handles the process route
+    // .then(response => response.text())
+    // .then(text => {
+    //     console.log('GET Request')
+    //     console.log(text);
+    // })
+
+    fetch('/process', {
+
+        //declare what type of content we are sending
+        headers: {
+            'Content-type': 'application/json' 
+        },
+
+        //specify HTTP method
+        method: 'POST',
+
+        //JSON to be sent
+        body: JSON.stringify({
+            "answers": answers
+        })
+    }).then(response => response.json())
+    .then(data => {
+        console.log(data)
+
+        let num_of_true_answers = data.total;
+        document.getElementById("true-num").innerHTML = num_of_true_answers;
+
+        document.getElementById("results-container").style.display = 'block';
+    })
+    .catch(error => console.log(error))
 }
 
