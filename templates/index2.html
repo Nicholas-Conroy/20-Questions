@@ -5,6 +5,21 @@
 {% endblock %}
 
 {% block body %} 
-    <h3>Templating is the new crossfit</h3>
+    <h1 id="page-title">20 Questions Game</h1>
+
+        
+    <div id="question-container">
+        <h4 id="question"></h4>
+        <!-- <label for="answer-input">Enter True or False</label>
+        <input type="text" name="answer-input"> -->
+        <button type="button" id="true-btn" onclick="trueClick()">True</button>
+        <button type="button" id="false-btn" onclick="falseClick()">False</button>
+    </div>
+
+    <div id="submit-container">
+        <button type="submit" id="submit-btn" onclick="submitClick()">Submit for Results</button>
+    </div>
+
+    <script src="../functions.js"></script>
 {% endblock %}
 
