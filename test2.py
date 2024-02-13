@@ -6,23 +6,23 @@ df = pd.read_csv("zoo2.csv")
 # fix legs column later, dont forget
 df = df.drop(["legs","class_type","catsize","fins","venomous","tail","domestic"], axis=1)
 
-print(df.head())
+# print(df.head())
 
-list_of_questions = list(df.columns)
+# list_of_questions = list(df.columns)
 
-print(list_of_questions)
+# print(list_of_questions)
 
-index = random.shuffle(list_of_questions)
+# index = random.shuffle(list_of_questions)
 
-answers = []
+# answers = []
 
-for q in list_of_questions:
-    print(q)
-    answer = input("True or False? (Enter T/F): ")
-    if answer == "T" or answer == "t": 
-        answers.append(q)
+# for q in list_of_questions:
+#     print(q)
+#     answer = input("True or False? (Enter T/F): ")
+#     if answer == "T" or answer == "t": 
+#         answers.append(q)
     
-print(answers)
+# print(answers)
 
 # sample animal has key of number of "True"s and value of list of which QIDs are true for it
 
