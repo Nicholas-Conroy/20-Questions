@@ -51,7 +51,10 @@ sample_animals = [
     Animal('cheetah', 9, ["Q1", "Q3", "Q5", "Q7", "Q9", "Q4", "Q10", "Q2", "Q6"]),
     Animal('elephant', 4, ["Q2", "Q10", "Q6", "Q7"]),
     Animal('giraffe', 10, ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10"]),
-    Animal('wolf', 1, ["Q1"])
+    Animal('wolf', 1, ["Q1"]),
+    Animal('kangaroo', 4, ["Q1", "Q3", "Q6", "Q9"]),
+    Animal('eagle', 4, ["Q4", "Q10", "Q5", "Q8"]),
+    
 ]        
 
 
@@ -72,12 +75,20 @@ num_of_correct_qids = 0
         
 
 #makes a list of the animals that match the correct number of true answers
-#TODO: make this choose the CLOSEST animals, not just the exact match
+#TODO: make this choose randomly from closest, not just the last 3
+
 def tally_closeness_check (correct_num, sample_list):
-    new_list = []
+    new_list = [None]*3 #list of 3 items
+    closest_dist = abs(sample_animals[0].num_true - correct_num)
+    i=0
+    
     for animal in sample_list:
-        if animal.num_true == correct_num:
-            new_list.append(animal)
+        cur_dist = abs(animal.num_true - correct_num)
+        if cur_dist <= closest_dist:
+            closest_dist = cur_dist
+            new_list[i] = animal
+            i += 1
+            if i == 3: i = 0
     return new_list
         
 

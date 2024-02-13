@@ -26,7 +26,7 @@ df = df.drop(["legs","class_type","catsize","fins","venomous","tail","domestic"]
 
 # sample animal has key of number of "True"s and value of list of which QIDs are true for it
 
-class Animal:
+class HotAnimal: 
     def __init__(self, name, num_true, qid_list) -> None:
         self.name = name
         self.num_true = num_true
@@ -34,48 +34,25 @@ class Animal:
     
     def get_name(self):
         return self.name
+    def get_id(self):
+        return self.qid_list
 
 
+
+sample_animals = []
 
 for animal_name, row in df.iterrows():
     animal_QID = row[1:]  # Slice from the second column to the last column
     iD = list(animal_QID)
-    print(iD)
+    name = row[0]
+    
+    true_sum = sum(animal_QID)
 
+    sample_animals.append(HotAnimal(name,true_sum,iD))
+    # you're not saving the new animals into anything
 
-# sample_animals = 
-
-# for animal_name in df:
-#     Animal()
-# sample_animals = [
-#     Animal('bird', 4, ["Q1", "Q4", "Q6", "Q8"]),
-#     Animal('goose', 4,["Q2", "Q4", "Q5", "Q9"]),
-#     Animal('snake', 5, ["Q1", "Q3", "Q7", "Q8", "Q10"]),
-#     Animal('moose', 4, ["Q1", "Q4", "Q9", "Q8"]),
-#     Animal('cat', 7, ["Q2", "Q3", "Q5", "Q7", "Q9", "Q10", "Q1"]), 
-#     Animal('dog', 5, ["Q1", "Q2", "Q5", "Q7", "Q10"]),
-#     Animal('elephant', 10, ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10"]),
-#     Animal('lion', 3, ["Q3", "Q6", "Q9"]),
-#     Animal('tiger', 8, ["Q2", "Q4", "Q6", "Q8", "Q10", "Q3", "Q7", "Q9"]),
-#     Animal('rabbit', 2, ["Q1", "Q5"]),
-#     Animal('snake', 6, ["Q2", "Q4", "Q6", "Q8", "Q10", "Q9"]),
-#     Animal('monkey', 9, ["Q1", "Q3", "Q8", "Q7", "Q9", "Q2", "Q10", "Q4", "Q6"]),
-#     Animal('horse', 1, ["Q10"]),
-#     Animal('penguin', 6, ["Q2", "Q4", "Q6", "Q8", "Q10", "Q7"]),
-#     Animal('koala', 3, ["Q1", "Q3", "Q5"]),
-#     Animal('dolphin', 8, ["Q1", "Q3", "Q5", "Q7", "Q9", "Q10", "Q8", "Q4"]),
-#     Animal('shark', 5, ["Q2", "Q4", "Q6", "Q8", "Q10"]),
-#     Animal('bear', 7, ["Q3", "Q6", "Q9", "Q1", "Q5", "Q8", "Q2"]),
-#     Animal('frog', 2, ["Q2", "Q4"]),
-#     Animal('cheetah', 9, ["Q1", "Q3", "Q5", "Q7", "Q9", "Q4", "Q10", "Q2", "Q6"]),
-#     Animal('elephant', 4, ["Q2", "Q10", "Q6", "Q7"]),
-#     Animal('giraffe', 10, ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10"]),
-#     Animal('wolf', 1, ["Q1"])
-# ]        
-
-
-
-
+for animal in sample_animals:
+    print(animal.get_id())
 
 
 
