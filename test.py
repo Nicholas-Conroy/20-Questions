@@ -49,7 +49,7 @@ sample_animals = [
     Animal('bear', 7, ["Q3", "Q6", "Q9", "Q1", "Q5", "Q8", "Q2"]),
     Animal('frog', 2, ["Q2", "Q4"]),
     Animal('cheetah', 9, ["Q1", "Q3", "Q5", "Q7", "Q9", "Q4", "Q10", "Q2", "Q6"]),
-    Animal('elephant', 4, ["Q2", "Q10", "Q6", "Q7"]),
+    Animal('rat', 4, ["Q2", "Q10", "Q6", "Q7"]),
     Animal('giraffe', 10, ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q10"]),
     Animal('wolf', 1, ["Q1"]),
     Animal('kangaroo', 4, ["Q1", "Q3", "Q6", "Q9"]),
@@ -75,20 +75,31 @@ num_of_correct_qids = 0
         
 
 #makes a list of the animals that match the correct number of true answers
-#TODO: make this choose randomly from closest, not just the last 3
+#thoughts: how many "closest" items should we keep? How far away is too far away for animals to be included (ex: has 7 true, should be included if target is 10?)
+
+
 
 def tally_closeness_check (correct_num, sample_list):
-    new_list = [None]*3 #list of 3 items
+    new_list = []
     closest_dist = abs(sample_animals[0].num_true - correct_num)
     i=0
     
+    # monkey isn't being inlcuded when correct num is 10, redo logic
+    
     for animal in sample_list:
         cur_dist = abs(animal.num_true - correct_num)
-        if cur_dist <= closest_dist:
+        if cur_dist <= closest_dist and cur_dist < 2:
             closest_dist = cur_dist
-            new_list[i] = animal
-            i += 1
-            if i == 3: i = 0
+            new_list.append(animal)
+
+    for i in new_list:
+        print(i.get_name(), end=', ')
+
+    if len(new_list) > 3:     
+        for x in range(0, len(new_list)-3):
+            index_to_remove = random.randint(0,len(new_list)-1)
+            print("removing index: ", index_to_remove, ", which is the animal ", new_list[index_to_remove].get_name())
+            del new_list[index_to_remove]
     return new_list
         
 
