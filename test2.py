@@ -36,8 +36,12 @@ class Animal:
         return self.name
 
 
-Animals = df.iloc[:,1]
-print(Animals)
+
+for animal_name, row in df.iterrows():
+    animal_QID = row[1:]  # Slice from the second column to the last column
+    iD = list(animal_QID)
+    print(iD)
+
 
 # sample_animals = 
 

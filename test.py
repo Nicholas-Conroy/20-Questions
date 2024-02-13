@@ -54,8 +54,7 @@ sample_animals = [
     Animal('wolf', 1, ["Q1"])
 ]        
 
-
-
+will it work if I use the falses as well
 
 
 
