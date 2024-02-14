@@ -1,5 +1,6 @@
 import random
 import pandas as pd
+from difflib import SequenceMatcher
 
 df = pd.read_csv("zoo2.csv")
 
@@ -16,7 +17,6 @@ list_of_questions = list(df.columns)
 
 answers = []
 
-
 # Appends answers into answers array as 0s or 1s
 for questions in list_of_questions:
     print(questions)
@@ -28,6 +28,7 @@ for questions in list_of_questions:
     
 print(answers)
 
+###################################################
 # sample animal has key of number of "True"s and value of list of which QIDs are true for it
 class HotAnimal: 
     def __init__(self, name, num_true, qid_list) -> None:
@@ -39,6 +40,7 @@ class HotAnimal:
         return self.name
     def get_id(self):
         return self.qid_list
+###################################################
 
 # Pulls animals from df
 for animal_name, row in df.iterrows():
@@ -49,78 +51,24 @@ for animal_name, row in df.iterrows():
     true_sum = sum(animal_QID)
 
     sample_animals.append(HotAnimal(name,true_sum,iD))
-    # you're not saving the new animals into anything
 
 # print out animas IDs
 # for animal in sample_animals:
     # print(animal.get_id())
+###################################################
 
-
-
-
-# sample_animals = [sample_animal1, sample_animal2, sample_animal3]
-
-num_of_correct_qids = 0
-
-# this works for checking if certain question id is in answers list
-# for a in answers:
-#     if "Q2" in a: #where a is a tuple with the t/f and the QID
-#         print("in")
-#     else:
-#         print("not in")
-        
-
-#makes a list of the animals that match the correct number of true answers
-#TODO: make this choose the CLOSEST animals, not just the exact match
-def tally_closeness_check (correct_num, sample_list):
-    new_list = []
-    for animal in sample_list:
-        if animal.num_true == correct_num:
-            new_list.append(animal)
-    return new_list
-        
 
 #returns the amount of correct QIDs for a given sample
-def qid_closeness_check (sample, answers):
-    # potential_samples = []
-    # for sample in samples:
-    #     if sample.num_true == 4:
-    #         potential_samples.append(sample) #animal object is added only if it has the correct number of trues
-    
-    num_correct = 0
-    
-    for idx, item in enumerate(answers):
-        for qid in sample.qid_list:
-            if qid == item: 
-                # print(f'{qid} is in answers at index {idx}')
-                num_correct += 1
-    
-    return num_correct
-            
-            
-
-#list of animals that match the number of correct true answers
-potential_animals = tally_closeness_check(len(answers), sample_animals)
-print("Possible animals: ", end=' ')
-[print(i.get_name(), end=', ') for i in potential_animals] # print animals that mactched the tally
 
 
-max_correct_qids = 0
-best_animal:Animal = None
+def similarity (a, b):
+    return SequenceMatcher(None, a, b).ratio()
 
-# the animal in the new list with the highest amount of correct QIDs is chosen
-for animal in potential_animals:
-    num_correct = qid_closeness_check(animal, answers)
-    
-    if num_correct > max_correct_qids:
-        max_correct_qids = num_correct
-        best_animal = animal
-  
-if best_animal is not None:  
-    print(f'\nThe best animal is {best_animal.get_name()}') 
-else:
-    print("\nno animal is good")
-        
+#Processing for comparisons
+def find_animal (answer):
+    for animals in HotAnimal:
+        similarity (HotAnimal.get_id(), answer)
+
 
 
 # Other TODOS:
