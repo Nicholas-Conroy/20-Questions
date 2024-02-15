@@ -55,9 +55,8 @@ def similarity (a, b):
 
 
 #####TODO######
-# Gets them correct, but does not register them as a perfect match for some reason
+# what happens if there is a tie?
 
-# best_animal:HotAnimal = None
 def find_animal (answer):
     best_match = 0
     animal_match = None
@@ -69,11 +68,9 @@ def find_animal (answer):
             animal_match = animal.get_name()
             animal_id = animal.get_id()
     print(str(animal_id) + "    ID")
-    print('percent closeness: ' + str(result))
+    print('percent closeness: ' + str(best_match*100) + '%')
     return animal_match
-# make animal_matches a list of tuples, where one val is the 
-# but wait how does that sort, might have to be more manual
-# theres also ways to just keep track 
+
 
 joe = find_animal(answers)
 
