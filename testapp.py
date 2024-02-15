@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+import minitest as mt
 
 app = Flask(__name__) # __name__ refers to this file (will be equal to __main__ if file is run from itself, if imported then it is name of file)
 
@@ -27,10 +28,8 @@ def process():
     
 @app.route('/data') #user can go to this route and see the data
 def data():
-    return {"data" : [
-        "hair","feathers","eggs","milk","airborne","aquatic","predator",
-        "toothed","backbone","breathes","venomous","fins","tail","domestic","legless","quadruped"
-    ]}
+    questions_data = mt.return_questions()
+    return {"data" : questions_data}
 
 if __name__ == '__main__': 
     app.run(debug=True) #display errors on page, for now

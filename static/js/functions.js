@@ -1,34 +1,38 @@
-let questions = null;
+let questions = {};
 let num_of_questions = 0;
+
+let buttonCounter = 0;
+const submitBtn = document.getElementById("submit-btn");
+const questionTitle = document.getElementById("question");
+
+//to store questions that are answered as true
+const answers = [];
+
 
 window.onload = event => {
     fetch("/data")
     .then(response => response.json())
     .then(response => {
         console.log("Data!");
-        // console.log(response.data);
-        questions = response.data;
-        num_of_questions = questions.length;
-        shuffleQuestions(questions);
-        document.getElementById("question").innerHTML = questions[0];
+        console.log(response.data);
+        question_names = response.data;
+
+        //create array of objects with QID and question name
+        question_names.forEach((elem, index) => {
+            qid = "Q"+(index+1);
+            // console.log(qid);
+            questions[qid] = elem;
+        })
+
+        console.log(JSON.stringify(questions, null, 4));
+
+        num_of_questions = question_names.length;
+        shuffleQuestions(question_names);
+        document.getElementById("question").innerHTML = question_names[0];
     })
     .catch(error => console.log(error));
 }
 
-let buttonCounter = 0;
-const submitBtn = document.getElementById("submit-btn");
-const questionTitle = document.getElementById("question");
-
-// const questions = [
-//     "Question 1",
-//     "Question 2",
-//     "Question 3",
-//     "Question 4",
-//     "Question 5",
-// ]
-
-//to store questions that are answered as true
-const answers = [];
 
 //understand this fully later
 function shuffleQuestions(qList) {
@@ -50,7 +54,7 @@ function trueClick(){
         submitBtn.style.display = "inline-block";
     }
     else{
-        questionTitle.innerHTML = questions[buttonCounter]; //next question in array is displayed
+        questionTitle.innerHTML = question_names[buttonCounter]; //next question in array is displayed
     }
 }
 
@@ -63,7 +67,7 @@ function falseClick(){
         submitBtn.style.display = "inline-block";
     }
     else{
-        questionTitle.innerHTML = questions[buttonCounter]; //next question in array is displayed
+        questionTitle.innerHTML = question_names[buttonCounter]; //next question in array is displayed
     }
 }
 

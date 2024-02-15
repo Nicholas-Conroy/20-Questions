@@ -3,20 +3,40 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 import pandas as pd
 from difflib import SequenceMatcher
+from csv import writer
 
-df = pd.read_csv("zoo2.csv")
-list_of_questions = list(df.columns[1:])
+# df = pd.read_csv("zoo2.csv")
+
+id = 
+
+f append_to_csv(ananimal, ):
+ 
+    # Takes in new animal ID   List = id
+ 
+    # adds animal name into the list ID at position 0
+    List.instert(0, animal)
+    # Opens csv in append mode   with open("("zoo2.csv",'a') as f_object:
+        # magic......
+        writer_object = writer(f_object)
+        writer_object.writerow(List)
+        f_object.close()
+def return_questions():
+    df = pd.read_csv("zoo2.csv")    
+    columns = list(df.columns[1:])
+    return columns
+
+list_of_questions = return_questions()
 
 answers = []
 
-for questions in list_of_questions:
-    print(questions)
-    answer = input("True or False? (Enter 1/0): ")
-    if answer == "1": 
-        answers.append(1)
+fo# questions in list_of_questions:
+    # int(questions)
+    an# er = input("True or False? (Enter 1/0): ")
+    if a# wer == "1": 
+        an# ers.append(1)
     else:
-        answers.append(0)
-print(str(answers) + "    Input")
+  #     answer# append(0)
+print(str(answer#  + "    Input")
 
 # animals object
 class HotAnimal:
@@ -73,10 +93,10 @@ def find_animal (answer):
 # displaying results
 animal_match = find_animal(answers)
 
-if animal_match is not None:  
-    print(animal_match)
+if animal_match is# ot None:  
+    print(animal_mat# )
 else:
-    print("uhoh spaghettio")
+    print("uhoh # aghett# ")
 
 # Other TODOS:
 #  - random tiebreaker if animals are still tied
