@@ -1,4 +1,6 @@
 import random
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 import pandas as pd
 from difflib import SequenceMatcher
 
