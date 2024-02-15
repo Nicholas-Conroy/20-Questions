@@ -3,82 +3,64 @@ import pandas as pd
 from difflib import SequenceMatcher
 
 df = pd.read_csv("zoo2.csv")
-# df = df.drop(["legs","class_type","catsize","fins","venomous","tail","domestic"], axis=1)
-
-# include all the columns except the first (animal_names)
 list_of_questions = list(df.columns[1:])
-# index = random.shuffle(list_of_questions)
-
 answers = []
 
-# Appends answers into answers array as 0s or 1s
-for questions in list_of_questions:
-    print(questions)
-    answer = input("True or False? (Enter 1/0): ")
-    if answer == "1": 
-        answers.append(1)
-    else:
-        answers.append(0)
-print(answers)
-
-###################################################
-# sample animal has key of number of "True"s and value of list of which QIDs are true for it
+# animals object
 class HotAnimal:
-    def __init__(self, name, num_true, qid_list) -> None:
+    def __init__(self, name, id_list) -> None:
         self.name = name
-        self.num_true = num_true
-        self.qid_list = qid_list
-    
+        self.id_list = id_list
+
     def get_name(self):
         return self.name
     def get_id(self):
         return self.qid_list
-###################################################
+
+# initiate array of animal objects
 sample_animals = []
 
-# Pulls animals from df
+# pulling animals from df
 for animal_name, row in df.iterrows():
-    animal_QID = row[1:]  # Slice from the second column to the last column
-    iD = list(animal_QID)
-    name = row[0]
-    true_sum = sum(animal_QID)
+    animal_id = row[1:]  # Slice from the second column to the last column
+    animal_id_list = list(animal_animal_id_list)
 
-    sample_animals.append(HotAnimal(name,true_sum,iD))
-# print out animas IDs
+    name = row[0]
+
+    sample_animals.append(HotAnimal(name, animal_id_list))
+
+# print out animal IDs
 # for animal in sample_animals:
-#     print(animal.get_id())
-###################################################
+#     print(animal.id_list)
+
+# similarity checker
 def similarity (a, b):
     return SequenceMatcher(None, a, b).ratio()
 
-#Processing for comparisons
 
-
-#####TODO######
-# Gets them correct, but does not register them as a perfect match for some reason
-
-# best_animal:HotAnimal = None
+# processing to find closest animal
 def find_animal (answer):
     best_match = 0
-    animal_match = None
-    animal_id = None
+    best_match_animal_name = None
+    best_match_id = None
+
     for animal in sample_animals:
-        result = similarity(animal.get_id(), answer)
-        if result > best_match:
-            best_match = result
-            animal_match = animal.get_name()
-            animal_id = animal.get_id()
-    print(str(animal_id) + "    ID")
-    print('percent closeness: ' + str(result))
-    return animal_match
-# make animal_matches a list of tuples, where one val is the 
-# but wait how does that sort, might have to be more manual
-# theres also ways to just keep track 
+        comparison_result = similarity(animal.get_id(), answer)
+        if comparison_result > best_match:
+            best_match = comparison_result
+            best_match_animal_name = animal.get_name()
+            best_match_id = animal.get_id()
 
-joe = find_animal(answers)
+    # for displaying numbers
+    print(str(best_match_id) + "    ID")
+    print('percent closeness: ' + str(best_match))
+    return best_match_animal_name
 
-if joe is not None:  
-    print(joe)
+# displaying results
+animal_match = find_animal(answers)
+
+if animal_match is not None:  
+    print(animal_match)
 else:
     print("uhoh spaghettio")
 
