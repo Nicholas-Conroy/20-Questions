@@ -53,16 +53,23 @@ def similarity (a, b):
 
 #Processing for comparisons
 
+
+#####TODO######
+# Gets them correct, but does not register them as a perfect match for some reason
+
 # best_animal:HotAnimal = None
 def find_animal (answer):
     best_match = 0
     animal_match = None
+    animal_id = None
     for animal in sample_animals:
         result = similarity(animal.get_id(), answer)
         if result > best_match:
             best_match = result
             animal_match = animal.get_name()
-
+            animal_id = animal.get_id()
+    print(str(animal_id) + "    ID")
+    print('percent closeness: ' + str(result))
     return animal_match
 # make animal_matches a list of tuples, where one val is the 
 # but wait how does that sort, might have to be more manual
