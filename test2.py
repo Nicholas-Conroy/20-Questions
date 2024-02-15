@@ -5,7 +5,7 @@ import pandas as pd
 from difflib import SequenceMatcher
 from csv import writer
 
-# df = pd.read_csv("zoo2.csv")
+df = pd.read_csv("zoo2.csv")
 
 id = 
 
@@ -38,7 +38,7 @@ fo# questions in list_of_questions:
   #     answer# append(0)
 print(str(answer#  + "    Input")
 
-# animals object
+# animals class
 class HotAnimal:
     def __init__(self, name, id_list) -> None:
         self.name = name

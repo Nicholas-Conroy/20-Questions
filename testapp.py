@@ -3,6 +3,10 @@ import minitest as mt
 
 app = Flask(__name__) # __name__ refers to this file (will be equal to __main__ if file is run from itself, if imported then it is name of file)
 
+#create dataframe of existing animals in csv 
+animals_df = mt.read_csv("zoo2.csv")
+# print(animals_df.head())
+
 #route for app to follow, this triggers the following function (the '/'indicates this is for the root url)
 @app.route('/') 
 def index():
@@ -16,19 +20,21 @@ def process():
         print('incoming POST')
         data = request.get_json()
         answers_list = data['answers']
-        print(answers_list)
+        # print(answers_list)
         
-        #just testing things out
-        num_of_answers = len(answers_list)
-        # print(type(data['greeting']))
+        list_of_animals = mt.get_animals_list(animals_df)
         
-        return {'total': num_of_answers}
+        best_animal_name = mt.find_animal(list_of_animals, answers_list)
+        
+        print(best_animal_name)
+        
+        return {'total': best_animal_name}
     else:
         return 'Go away'
     
 @app.route('/data') #user can go to this route and see the data
 def data():
-    questions_data = mt.return_questions()
+    questions_data = mt.return_questions(animals_df)
     return {"data" : questions_data}
 
 if __name__ == '__main__': 

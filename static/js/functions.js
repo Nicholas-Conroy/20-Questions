@@ -5,7 +5,7 @@ let buttonCounter = 0;
 const submitBtn = document.getElementById("submit-btn");
 const questionTitle = document.getElementById("question");
 
-//to store questions that are answered as true
+//to store array of 1s and 0s (true and false answers to questions) to be sent for processing
 const answers = [];
 
 
@@ -19,9 +19,10 @@ window.onload = event => {
 
         //create array of objects with QID and question name
         question_names.forEach((elem, index) => {
-            qid = "Q"+(index+1);
-            // console.log(qid);
-            questions[qid] = elem;
+            // qid = "Q"+(index+1);
+            // // console.log(qid);
+            // questions[qid] = elem;
+            questions[elem] = 0;
         })
 
         console.log(JSON.stringify(questions, null, 4));
@@ -46,7 +47,9 @@ function shuffleQuestions(qList) {
 
 //submit button only displays after certain number of true/false clicks (currently 5 for testing, will be 20)
 function trueClick(){
-    answers.push(1); //add 1 for true answers
+    // answers.push(1); //add 1 for true answers
+    current_qname = question_names[buttonCounter];
+    questions[current_qname] = 1;
     buttonCounter++;
     if(buttonCounter >= num_of_questions){ //if max is reached, disable both buttons and display the submit button
         document.getElementById("true-btn").disabled = true;
@@ -59,7 +62,7 @@ function trueClick(){
 }
 
 function falseClick(){
-    answers.push(0); //add 0 for false answers
+    // answers.push(0); //add 0 for false answers
     buttonCounter++;
     if(buttonCounter >= num_of_questions){ //if max is reached, disable both buttons and display the submit button
         document.getElementById("true-btn").disabled = true;
@@ -72,7 +75,12 @@ function falseClick(){
 }
 
 function submitClick(){
-    console.log(answers); 
+    console.log(JSON.stringify(questions, null, 4));
+
+    for(let x in questions) {
+        answers.push(questions[x]);
+    }
+    console.log(answers);
 
     // fetch('/process') //get data from flask app route that handles the process route
     // .then(response => response.text())
