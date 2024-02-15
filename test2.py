@@ -4,7 +4,17 @@ from difflib import SequenceMatcher
 
 df = pd.read_csv("zoo2.csv")
 list_of_questions = list(df.columns[1:])
+
 answers = []
+
+for questions in list_of_questions:
+    print(questions)
+    answer = input("True or False? (Enter 1/0): ")
+    if answer == "1": 
+        answers.append(1)
+    else:
+        answers.append(0)
+print(str(answers) + "    Input")
 
 # animals object
 class HotAnimal:
@@ -15,7 +25,7 @@ class HotAnimal:
     def get_name(self):
         return self.name
     def get_id(self):
-        return self.qid_list
+        return self.id_list
 
 # initiate array of animal objects
 sample_animals = []
@@ -23,7 +33,7 @@ sample_animals = []
 # pulling animals from df
 for animal_name, row in df.iterrows():
     animal_id = row[1:]  # Slice from the second column to the last column
-    animal_id_list = list(animal_animal_id_list)
+    animal_id_list = list(animal_id)
 
     name = row[0]
 
