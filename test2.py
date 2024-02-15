@@ -60,6 +60,8 @@ def find_animal (answer):
             best_match = comparison_result
             best_match_animal_name = animal.get_name()
             best_match_id = animal.get_id()
+            
+            # maybe just do best match as a the animal object, and use the methods later for output (saves on a few variables)
 
     # for displaying numbers
     print(str(best_match_id) + "    ID")
@@ -79,9 +81,6 @@ else:
 #  - make a guess no matter what
 #  - find closest match for first phase of matching, top 3 closest maybe?
 
-
-####### Overall Process Idea ########## 
-# get all answers from first part of each tuple in answers list, and choose animal based on total and which has the most number of the same (true) question IDs
 
 # Ideas: 
 #   - way to check database/file (however we're storing info, probably db), and edit animal entries, especially ones made by users

@@ -103,3 +103,12 @@ function submitClick(){
     .catch(error => console.log(error))
 }
 
+function correctAnswer(){
+    document.getElementById("verify-answer").style.display = "none";
+    document.getElementById("next-steps-true").style.display = "block";
+}
+
+function wrongAnswer(){
+    document.getElementById("verify-answer").style.display = "none";
+    document.getElementById("next-steps-false").style.display = "block";
+}

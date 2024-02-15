@@ -22,7 +22,25 @@
 
     <div id="results-container">
         <p>You had <span id="true-num"></span> true answer(s).</p>
-        <p>#ThisWasDoneInPython</p>
+
+        <p>Your animal is: <span id="animal-result"></span></p>
+
+        <div id="verify-answer">
+            <p>Is this correct?</p>
+            <button type="button" onclick="correctAnswer()">Yes</button>
+            <button type="button" onclick="wrongAnswer()">No</button>
+        </div>
+
+        <div id="next-steps-true">
+            <p>NICEEEEEE, we're never wrong.</p>
+        </div>
+        <div id="next-steps-false">
+            <div>
+                <label for="">Oh. What is the name of the animal you were thinking of?</label>
+                <input type="text" placeholder="Enter animal name">
+            </div>
+        </div>
+
     </div>
 {% endblock %}
 

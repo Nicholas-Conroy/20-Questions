@@ -112,3 +112,11 @@ button:disabled {
     margin: auto;
     margin-top: 50px !important;
 }
+
+#next-steps-true {
+    display: none;
+}
+
+#next-steps-false {
+    display: none;    
+}
