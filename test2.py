@@ -39,6 +39,12 @@ def similarity (a, b):
 
 
 # processing to find closest animal
+#Processing for comparisons
+
+
+#####TODO######
+# what happens if there is a tie?
+
 def find_animal (answer):
     best_match = 0
     best_match_animal_name = None
@@ -58,6 +64,17 @@ def find_animal (answer):
 
 # displaying results
 animal_match = find_animal(answers)
+        result = similarity(animal.get_id(), answer)
+        if result > best_match:
+            best_match = result
+            animal_match = animal.get_name()
+            animal_id = animal.get_id()
+    print(str(animal_id) + "    ID")
+    print('percent closeness: ' + str(best_match*100) + '%')
+    return animal_match
+
+
+joe = find_animal(answers)
 
 if animal_match is not None:  
     print(animal_match)
