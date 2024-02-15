@@ -16,6 +16,7 @@ def process():
         data = request.get_json()
         answers_list = data['answers']
         
+        
         #just testing things out
         num_of_answers = len(answers_list)
         # print(type(data['greeting']))

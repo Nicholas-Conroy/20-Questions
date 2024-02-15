@@ -3,16 +3,9 @@ import pandas as pd
 from difflib import SequenceMatcher
 
 df = pd.read_csv("zoo2.csv")
-
-# fix legs column later, dont forget
-df = df.drop(["legs","class_type","catsize","fins","venomous","tail","domestic"], axis=1)
-
-# print(df.head())
+# df = df.drop(["legs","class_type","catsize","fins","venomous","tail","domestic"], axis=1)
 
 list_of_questions = list(df.columns)
-
-# print(list_of_questions)
-
 # index = random.shuffle(list_of_questions)
 
 answers = []
@@ -22,15 +15,14 @@ for questions in list_of_questions:
     print(questions)
     answer = input("True or False? (Enter 1/0): ")
     if answer == "1": 
-        answers.append(int(answer))
+        answers.append(1)
     else:
         answers.append(0)
-    
 print(answers)
 
 ###################################################
 # sample animal has key of number of "True"s and value of list of which QIDs are true for it
-class HotAnimal: 
+class HotAnimal:
     def __init__(self, name, num_true, qid_list) -> None:
         self.name = name
         self.num_true = num_true
@@ -41,35 +33,46 @@ class HotAnimal:
     def get_id(self):
         return self.qid_list
 ###################################################
+sample_animals = []
 
 # Pulls animals from df
 for animal_name, row in df.iterrows():
     animal_QID = row[1:]  # Slice from the second column to the last column
     iD = list(animal_QID)
     name = row[0]
-    
     true_sum = sum(animal_QID)
 
     sample_animals.append(HotAnimal(name,true_sum,iD))
-
 # print out animas IDs
 # for animal in sample_animals:
-    # print(animal.get_id())
+#     print(animal.get_id())
 ###################################################
-
-
-#returns the amount of correct QIDs for a given sample
-
-
 def similarity (a, b):
     return SequenceMatcher(None, a, b).ratio()
 
 #Processing for comparisons
+
+# best_animal:HotAnimal = None
 def find_animal (answer):
-    for animals in HotAnimal:
-        similarity (HotAnimal.get_id(), answer)
+    best_match = 0
+    animal_match = None
+    for animal in sample_animals:
+        result = similarity(animal.get_id(), answer)
+        if result > best_match:
+            best_match = result
+            animal_match = animal.get_name()
 
+    return animal_match
+# make animal_matches a list of tuples, where one val is the 
+# but wait how does that sort, might have to be more manual
+# theres also ways to just keep track 
 
+joe = find_animal(answers)
+
+if joe is not None:  
+    print(joe)
+else:
+    print("uhoh spaghettio")
 
 # Other TODOS:
 #  - random tiebreaker if animals are still tied
