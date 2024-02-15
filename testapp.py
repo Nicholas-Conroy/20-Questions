@@ -15,7 +15,7 @@ def process():
         print('incoming POST')
         data = request.get_json()
         answers_list = data['answers']
-        
+        print(answers_list)
         
         #just testing things out
         num_of_answers = len(answers_list)
@@ -25,7 +25,12 @@ def process():
     else:
         return 'Go away'
     
-    
+@app.route('/data') #user can go to this route and see the data
+def data():
+    return {"data" : [
+        "hair","feathers","eggs","milk","airborne","aquatic","predator",
+        "toothed","backbone","breathes","venomous","fins","tail","domestic","legless","quadruped"
+    ]}
 
 if __name__ == '__main__': 
     app.run(debug=True) #display errors on page, for now

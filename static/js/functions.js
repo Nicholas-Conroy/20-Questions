@@ -1,20 +1,31 @@
+let questions = null;
+let num_of_questions = 0;
+
 window.onload = event => {
-    shuffleQuestions(questions);
-    // console.log(questions);
-    document.getElementById("question").innerHTML = questions[0];
+    fetch("/data")
+    .then(response => response.json())
+    .then(response => {
+        console.log("Data!");
+        // console.log(response.data);
+        questions = response.data;
+        num_of_questions = questions.length;
+        shuffleQuestions(questions);
+        document.getElementById("question").innerHTML = questions[0];
+    })
+    .catch(error => console.log(error));
 }
 
 let buttonCounter = 0;
 const submitBtn = document.getElementById("submit-btn");
 const questionTitle = document.getElementById("question");
 
-const questions = [
-    "Question 1",
-    "Question 2",
-    "Question 3",
-    "Question 4",
-    "Question 5",
-]
+// const questions = [
+//     "Question 1",
+//     "Question 2",
+//     "Question 3",
+//     "Question 4",
+//     "Question 5",
+// ]
 
 //to store questions that are answered as true
 const answers = [];
@@ -31,9 +42,9 @@ function shuffleQuestions(qList) {
 
 //submit button only displays after certain number of true/false clicks (currently 5 for testing, will be 20)
 function trueClick(){
-    answers.push(questions[buttonCounter]); //add QID answered as true to answers array
+    answers.push(1); //add 1 for true answers
     buttonCounter++;
-    if(buttonCounter >= 5){ //if max is reached, disable both buttons and display the submit button
+    if(buttonCounter >= num_of_questions){ //if max is reached, disable both buttons and display the submit button
         document.getElementById("true-btn").disabled = true;
         document.getElementById("false-btn").disabled = true;
         submitBtn.style.display = "inline-block";
@@ -44,8 +55,9 @@ function trueClick(){
 }
 
 function falseClick(){
+    answers.push(0); //add 0 for false answers
     buttonCounter++;
-    if(buttonCounter >= 5){ //if max is reached, disable both buttons and display the submit button
+    if(buttonCounter >= num_of_questions){ //if max is reached, disable both buttons and display the submit button
         document.getElementById("true-btn").disabled = true;
         document.getElementById("false-btn").disabled = true;
         submitBtn.style.display = "inline-block";
