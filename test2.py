@@ -5,7 +5,8 @@ from difflib import SequenceMatcher
 df = pd.read_csv("zoo2.csv")
 # df = df.drop(["legs","class_type","catsize","fins","venomous","tail","domestic"], axis=1)
 
-list_of_questions = list(df.columns)
+# include all the columns except the first (animal_names)
+list_of_questions = list(df.columns[1:])
 # index = random.shuffle(list_of_questions)
 
 answers = []
