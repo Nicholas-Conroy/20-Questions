@@ -1,3 +1,4 @@
+//object to store questions and if they are answered true or false
 let questions = {};
 let num_of_questions = 0;
 
@@ -10,6 +11,7 @@ const answers = [];
 
 
 window.onload = event => {
+    //get questions from csv  
     fetch("/data")
     .then(response => response.json())
     .then(response => {
@@ -17,18 +19,18 @@ window.onload = event => {
         console.log(response.data);
         question_names = response.data;
 
-        //create array of objects with QID and question name
+        //add each question to "questions" object with "answered" value set to 0
         question_names.forEach((elem, index) => {
-            // qid = "Q"+(index+1);
-            // // console.log(qid);
-            // questions[qid] = elem;
             questions[elem] = 0;
         })
 
         console.log(JSON.stringify(questions, null, 4));
 
+        //the total number of questions, based on incoming csv data
         num_of_questions = question_names.length;
+        //randomly order questions for asking user
         shuffleQuestions(question_names);
+        //display first question
         document.getElementById("question").innerHTML = question_names[0];
     })
     .catch(error => console.log(error));
@@ -47,7 +49,7 @@ function shuffleQuestions(qList) {
 
 //submit button only displays after certain number of true/false clicks (currently 5 for testing, will be 20)
 function trueClick(){
-    // answers.push(1); //add 1 for true answers
+    //get current question name and find it in object, change "answered" value to 1 for respective question
     current_qname = question_names[buttonCounter];
     questions[current_qname] = 1;
     buttonCounter++;
