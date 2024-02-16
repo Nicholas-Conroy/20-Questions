@@ -1,8 +1,20 @@
 import pandas as pd
 from difflib import SequenceMatcher
 # import warnings
-
 # warnings.simplefilter(action='ignore', category=FutureWarning)
+from csv import writer
+
+def append_to_csv(animal, id_list):
+    # Takes in new animal ID
+    List = id
+    # adds animal name into the list ID at position 0
+    List.insert(0, animal)
+    # Opens csv in append mode
+    with open("zoo2.csv",'a') as f_object:
+        # magic......
+        writer_object = writer(f_object)
+        writer_object.writerow(List)
+        f_object.close()
 
 
 def read_csv(csv):
