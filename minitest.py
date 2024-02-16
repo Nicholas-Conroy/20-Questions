@@ -6,7 +6,7 @@ from csv import writer
 
 def append_to_csv(animal, id_list):
     # Takes in new animal ID
-    List = id
+    List = id_list
     # adds animal name into the list ID at position 0
     List.insert(0, animal)
     # Opens csv in append mode
