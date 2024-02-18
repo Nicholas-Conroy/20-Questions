@@ -17,41 +17,72 @@ window.onload = event => {
     .then(response => {
         console.log("Data!");
         console.log(response.data);
-        question_names = response.data;
+        //create one list to hold question values as returned from JSON data, and one list to hold formatted questions for displaying to user
+        question_names_unformatted = response.data;
+        question_names_formatted = [];
 
         //add each question to "questions" object with "answered" value set to 0
-        question_names.forEach((elem, index) => {
+        //add properly formatted questions with correct gramamr to second questions list
+        question_names_unformatted.forEach((elem, index) => {
             questions[elem] = 0;
+
+            //formatting
+            if(index == 4 || index == 5 || index == 7 || index == 10 || 
+                index == 13 || index == 14){
+                    question_names_formatted[index] = "Is your animal " + elem + "?";
+                }
+            else if(index == 6 || index == 15 || index == 16){
+                question_names_formatted[index] = "Is your animal a " + elem + "?";
+            }
+            else if(index == 8 || index == 12){
+                question_names_formatted[index] = "Does your animal have a " + elem + "?";
+            }
+            else if(index == 2){
+                question_names_formatted[index] = "Does your animal lay " + elem + "?";
+            }
+            else if(index == 9){
+                question_names_formatted[index] = "Does your animal " + elem + "?";
+            }
+            else {
+                question_names_formatted[index] = "Does your animal have " + elem + "?";
+            }
         })
 
         console.log(JSON.stringify(questions, null, 4));
 
         //the total number of questions, based on incoming csv data
-        num_of_questions = question_names.length;
-        //randomly order questions for asking user
-        shuffleQuestions(question_names);
+        num_of_questions = question_names_unformatted.length;
+        //randomly order questions for asking user, both lists are randomized in the same order
+        shuffleQuestions(question_names_unformatted, question_names_formatted);
         //display first question
-        document.getElementById("question").innerHTML = question_names[0];
+        document.getElementById("question").innerHTML = question_names_formatted[0];
     })
     .catch(error => console.log(error));
 }
 
 
 //understand this fully later
-function shuffleQuestions(qList) {
-    for (let i = qList.length - 1; i > 0; i--) {
+function shuffleQuestions(qList1, qList2) {
+    for (let i = qList1.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
-        let temp = qList[i];
-        qList[i] = qList[j];
-        qList[j] = temp;
+        let temp = qList1[i];
+        qList1[i] = qList1[j];
+        qList1[j] = temp;
+        //shuffle second list in exact same way
+        temp = qList2[i];
+        qList2[i] = qList2[j];
+        qList2[j] = temp;     
     }
+
+    console.log(qList1);
+    console.log(qList2);
 }
 
 //submit button only displays after certain number of true/false clicks (currently 5 for testing, will be 20)
 function trueClick(){
     //get current question name and find it in object, change "answered" value to 1 for respective question
-    current_qname = question_names[buttonCounter];
-    questions[current_qname] = 1;
+    current_question_unf = question_names_unformatted[buttonCounter];
+    questions[current_question_unf] = 1;
     buttonCounter++;
     if(buttonCounter >= num_of_questions){ //if max is reached, disable both buttons and display the submit button
         document.getElementById("true-btn").disabled = true;
@@ -59,12 +90,11 @@ function trueClick(){
         submitBtn.style.display = "inline-block";
     }
     else{
-        questionTitle.innerHTML = question_names[buttonCounter]; //next question in array is displayed
+        questionTitle.innerHTML = question_names_formatted[buttonCounter]; //next question in formatted questions array is displayed
     }
 }
 
 function falseClick(){
-    // answers.push(0); //add 0 for false answers
     buttonCounter++;
     if(buttonCounter >= num_of_questions){ //if max is reached, disable both buttons and display the submit button
         document.getElementById("true-btn").disabled = true;
@@ -72,7 +102,7 @@ function falseClick(){
         submitBtn.style.display = "inline-block";
     }
     else{
-        questionTitle.innerHTML = question_names[buttonCounter]; //next question in array is displayed
+        questionTitle.innerHTML = question_names_formatted[buttonCounter]; //next question in formatted questions array is displayed
     }
 }
 
@@ -109,8 +139,13 @@ function submitClick(){
     .then(data => {
         console.log(data)
 
-        let num_of_true_answers = data.total;
-        document.getElementById("true-num").innerHTML = num_of_true_answers;
+        //TODO: fix the var names
+        let animal_result = data.total;
+
+        document.getElementById("question-container").style.display = "none";
+        document.getElementById("submit-container").style.display = "none";
+
+        document.getElementById("animal-result").innerHTML = animal_result;
 
         document.getElementById("results-container").style.display = 'block';
     })
