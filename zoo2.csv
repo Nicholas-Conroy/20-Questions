@@ -1,4 +1,4 @@
-animal_name,hair,feathers,eggs,milk,airborne,aquatic,predator,toothed,backbone,breathes,venomous,fins,tail,domestic,legless,quadruped,pet
+animal_name,hair,feathers,eggs,milk,airborne,aquatic,predator,toothed,backbone,breathe,venomous,fins,tail,domestic,legless,quadruped,pet
 turtle,0,0,1,0,0,1,0,0,1,1,0,0,1,1,0,1,1
 lizard,0,0,1,0,0,0,1,1,1,1,0,0,0,0,0,1,1
 gecko,0,0,1,0,0,0,0,1,1,1,0,0,1,1,1,1,1
