@@ -7,19 +7,19 @@ from csv import writer
 
 df = pd.read_csv("zoo2.csv")
 
-id = 
-
-f append_to_csv(ananimal, ):
- 
-    # Takes in new animal ID   List = id
- 
+def append_to_csv(animal, id_list):
+    # Takes in new animal ID
+    List = id_list
     # adds animal name into the list ID at position 0
-    List.instert(0, animal)
-    # Opens csv in append mode   with open("("zoo2.csv",'a') as f_object:
-        # magic......
-        writer_object = writer(f_object)
+    List.insert(0, animal)
+    # Opens csv in append mode
+    with open("zoo2.csv",'a', newline='') as csvfile:
+        # create CSV writer object
+        writer_object = writer(csvfile)
         writer_object.writerow(List)
-        f_object.close()
+        csvfile.close()
+
+
 def return_questions():
     df = pd.read_csv("zoo2.csv")    
     columns = list(df.columns[1:])
@@ -29,14 +29,16 @@ list_of_questions = return_questions()
 
 answers = []
 
-fo# questions in list_of_questions:
-    # int(questions)
-    an# er = input("True or False? (Enter 1/0): ")
-    if a# wer == "1": 
-        an# ers.append(1)
+for questions in list_of_questions:
+    print(questions)
+    answer = input("True or False? (Enter 1/0): ")
+    if answer == "1": 
+        answers.append(1)
     else:
-  #     answer# append(0)
-print(str(answer#  + "    Input")
+       answers.append(0)
+
+
+print((answers))
 
 # animals class
 class HotAnimal:
@@ -92,12 +94,12 @@ def find_animal (answer):
 
 # displaying results
 animal_match = find_animal(answers)
+print(animal_match)
 
-if animal_match is# ot None:  
-    print(animal_mat# )
-else:
-    print("uhoh # aghett# ")
-
+new_animal = input("add new animal? ")
+if(new_animal != "no"):
+    new_animal_name = input("WHat is the name of animal")
+    append_to_csv(new_animal_name,answers)
 # Other TODOS:
 #  - random tiebreaker if animals are still tied
 #  - make a guess no matter what

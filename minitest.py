@@ -4,17 +4,22 @@ from difflib import SequenceMatcher
 # warnings.simplefilter(action='ignore', category=FutureWarning)
 from csv import writer
 
+# Might not work if csv file isint saved after being written to
 def append_to_csv(animal, id_list):
     # Takes in new animal ID
     List = id_list
     # adds animal name into the list ID at position 0
     List.insert(0, animal)
-    # Opens csv in append mode
-    with open("zoo2.csv",'a') as f_object:
-        # magic......
-        writer_object = writer(f_object)
+    # Opens csv in append mode. use w for write mode.
+    with open("zoo2.csv",'a', newline='') as csvfile:
+        # create CSV writer object
+        writer_object = writer(csvfile)
+        # writes to the csv
         writer_object.writerow(List)
-        f_object.close()
+        # closes the object
+        csvfile.close()
+# Documentation:
+# https://docs.python.org/3/library/csv.html#module-csv
 
 
 def read_csv(csv):
@@ -52,8 +57,10 @@ def get_animals_list(df):
 
 # similarity checker
 def similarity (a, b):
+    # When None is passed, it uses the default comparison function
     return SequenceMatcher(None, a, b).ratio()
-
+# Documentation: 
+# https://docs.python.org/3/library/difflib.html#difflib.SequenceMatcher
 
 def find_animal (sample_animals, answer):
     best_match = 0
