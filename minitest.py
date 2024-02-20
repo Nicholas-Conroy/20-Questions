@@ -75,7 +75,7 @@ def find_animal (sample_animals, answer):
 
     # for displaying numbers
     # print(str(best_match_id) + "    ID")
-    # print('percent closeness: ' + str(best_match))
+    print('percent closeness: ' + str(best_match))
     return best_match_animal_name
 
 # import random

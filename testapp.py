@@ -44,6 +44,10 @@ def addAnimal():
         data = request.get_json()
         print(data)
         
+        # formats animal name so it is added to CSV in lowercase
+        data['animal'] = data['animal'].lower()
+        
+        # add animal and answers list to csv
         mt.append_to_csv(data['animal'], data['answers'])
         
         return {'message' : 'New animal added!'}
