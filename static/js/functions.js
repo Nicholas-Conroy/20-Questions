@@ -161,3 +161,29 @@ function wrongAnswer(){
     document.getElementById("verify-answer").style.display = "none";
     document.getElementById("next-steps-false").style.display = "block";
 }
+function addAnimal(){
+    let new_animal = document.getElementById('new-animal').value;
+    // console.log(answers);
+
+    fetch('/addAnimal', {
+        //declare what type of content we are sending
+        headers: {
+            'Content-type': 'application/json' 
+        },
+
+        //specify HTTP method
+        method: 'POST',
+
+        //JSON to be sent
+        body: JSON.stringify({
+            "animal" : new_animal,
+            "answers": answers
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("response").innerHTML = data.message;
+    })
+    
+
+}

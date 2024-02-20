@@ -11,7 +11,7 @@ animals_df = mt.read_csv("zoo2.csv")
 @app.route('/') 
 def index():
      #knows to check templates folder, just specify file to render
-    return render_template("index2.html")
+    return render_template("index.html")
     
 @app.route('/process', methods=['GET', 'POST'])
 def process():
@@ -37,5 +37,18 @@ def data():
     questions_data = mt.return_questions(animals_df)
     return {"data" : questions_data}
 
+@app.route('/addAnimal', methods=['GET', 'POST'])
+def addAnimal():
+    
+    if request.method == 'POST':
+        data = request.get_json()
+        print(data)
+        
+        mt.append_to_csv(data['animal'], data['answers'])
+        
+        return {'message' : 'New animal added!'}
+    else:
+        return "Go away"
+    
 if __name__ == '__main__': 
     app.run(debug=True) #display errors on page, for now
