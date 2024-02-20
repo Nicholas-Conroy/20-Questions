@@ -41,7 +41,7 @@ window.onload = event => {
                 question_names_formatted[index] = "Does your animal lay " + elem + "?";
             }
             else if(index == 9){
-                question_names_formatted[index] = "Does your animal " + elem + "?";
+                question_names_formatted[index] = "Does your animal " + elem + " air?";
             }
             else {
                 question_names_formatted[index] = "Does your animal have " + elem + "?";
