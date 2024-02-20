@@ -4,19 +4,16 @@ from difflib import SequenceMatcher
 # warnings.simplefilter(action='ignore', category=FutureWarning)
 from csv import writer
 
-# Might not work if csv file isint saved after being written to
+# Might not work if csv file isinf saved after being written to
 def append_to_csv(animal, id_list):
-    # Takes in new animal ID
     List = id_list
     # adds animal name into the list ID at position 0
     List.insert(0, animal)
     # Opens csv in append mode. use w for write mode.
     with open("zoo2.csv",'a', newline='') as csvfile:
-        # create CSV writer object
+        # create CSV writer object, writes, and closes.
         writer_object = writer(csvfile)
-        # writes to the csv
         writer_object.writerow(List)
-        # closes the object
         csvfile.close()
 # Documentation:
 # https://docs.python.org/3/library/csv.html#module-csv
