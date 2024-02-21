@@ -43,6 +43,9 @@ window.onload = event => {
             else if(index == 9){
                 question_names_formatted[index] = "Does your animal " + elem + " air?";
             }
+            else if(index == 17){
+                question_names_formatted[index] = "Is your animal commonly active at " + elem + "?";
+            }
             else {
                 question_names_formatted[index] = "Does your animal have " + elem + "?";
             }
