@@ -6,12 +6,12 @@ app = Flask(__name__) # __name__ refers to this file (will be equal to __main__ 
 #create dataframe of existing animals in csv 
 #TODO make sure this reloads the csv on every page load
 animals_df = mt.read_csv("zoo2.csv")
+
 # print(animals_df.head())
 
 #route for app to follow, this triggers the following function (the '/'indicates this is for the root url)
 @app.route('/') 
 def index():
-    
      #knows to check templates folder, just specify file to render
     return render_template("index.html")
     
@@ -29,7 +29,7 @@ def process():
         best_animal_name = mt.find_animal(list_of_animals, answers_list)
         
         print(best_animal_name)
-        
+                
         return {'total': best_animal_name}
     else:
         return 'Go away'
