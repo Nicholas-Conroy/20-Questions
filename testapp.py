@@ -39,20 +39,26 @@ def data():
     questions_data = mt.return_questions(animals_df)
     return {"data" : questions_data}
 
+# this route is used to add a new animal to the csv, if it does not already exist in the file
 @app.route('/addAnimal', methods=['GET', 'POST'])
 def addAnimal():
     
     if request.method == 'POST':
+        global animals_df
         data = request.get_json()
         print(data)
         
         # formats animal name so it is added to CSV in lowercase
         data['animal'] = data['animal'].lower()
         
-        # add animal and answers list to csv
-        mt.append_to_csv(data['animal'], data['answers'], animals_df)
+        # add animal and answers list to csv, if not already in csv
+        animal_added = mt.append_to_csv(data['animal'], data['answers'], animals_df)
         
-        return {'message' : 'New animal added!'}
+        if animal_added:
+            animals_df = mt.read_csv("zoo2.csv") #reread csv and update global variable so data is up to date when page is refreshed
+            return {'message' : 'New animal added!'}
+        else:
+            return {'message' : 'This animal is already in the system. We must have guessed wrong, sorry.'}
     else:
         return "Go away"
     
