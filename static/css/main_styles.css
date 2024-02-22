@@ -68,7 +68,8 @@ h1, h4 {
     background-color: rgb(237, 69, 69);
 }
 
-#true-btn:enabled:active, #false-btn:enabled:active, #submit-btne:active, #correct-btn:active, #wrong-btn:active, #new-animal-btn:enabled:active {
+#true-btn:enabled:active, #false-btn:enabled:active, #submit-btne:active, #correct-btn:active, 
+#wrong-btn:active, #new-animal-btn:enabled:active, #reload-btn:active{
     box-shadow: none;
     transform: translateY(5px);
 }
@@ -101,7 +102,7 @@ button:disabled {
     box-shadow: 0 5px rgb(18, 32, 158);
 }
 
-#submit-btn:hover, #new-animal-btn:hover {
+#submit-btn:hover, #new-animal-btn:hover, #reload-btn:hover {
     cursor: pointer;
     background-color: rgb(93, 109, 255);
 }
@@ -205,13 +206,29 @@ button:disabled {
     border: none;
     font-weight: bold;
     color: white;
-
     font-size: 0.7em;
-    /* background-color: rgb(); */
     background-color: rgb(59,78,254);
     box-shadow: 0 5px rgb(18, 32, 158);
 }
 
-#reload-btn {
+#play-again {
     display: none;
+    float: left;
+    position: relative;
+    bottom: 20vh;
+    margin-left: 9%;
+    text-align: center;
+}
+
+#reload-btn {
+    padding: 10px;
+    padding-inline: 20px;
+    width: 180px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    color: white;
+    font-size: 1.2em;
+    background-color: rgb(59,78,254);
+    box-shadow: 0 5px rgb(18, 32, 158);
 }
