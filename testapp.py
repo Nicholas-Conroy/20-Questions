@@ -50,7 +50,7 @@ def addAnimal():
         data['animal'] = data['animal'].lower()
         
         # add animal and answers list to csv
-        mt.append_to_csv(data['animal'], data['answers'])
+        mt.append_to_csv(data['animal'], data['answers'], animals_df)
         
         return {'message' : 'New animal added!'}
     else:

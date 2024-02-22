@@ -5,7 +5,10 @@ from difflib import SequenceMatcher
 from csv import writer
 
 # Might not work if csv file isinf saved after being written to
-def append_to_csv(animal, id_list):
+def append_to_csv(animal, id_list, df):
+    # Check if animal is duplicate
+    if check_animal_in_list(animal, df):
+        return None
     List = id_list
     # adds animal name into the list ID at position 0
     List.insert(0, animal)
@@ -18,6 +21,15 @@ def append_to_csv(animal, id_list):
 # Documentation:
 # https://docs.python.org/3/library/csv.html#module-csv
 
+
+def check_animal_in_list(animal, df):
+    animal_names = []
+    for animal_name, row in df.iterrows():
+        animal_names.append(row[0])
+
+    if animal in animal_names:
+        return True
+    
 
 def read_csv(csv):
     return pd.read_csv(csv)    
@@ -49,7 +61,6 @@ def get_animals_list(df):
 
         sample_animals.append(HotAnimal(name, animal_id_list))
     return sample_animals
-
 
 
 # similarity checker
