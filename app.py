@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, jsonify
-import minitest as mt
+import prg
 
 app = Flask(__name__) # __name__ refers to this file (will be equal to __main__ if file is run from itself, if imported then it is name of file)
 
 #create dataframe of existing animals in csv 
 #TODO make sure this reloads the csv on every page load
-animals_df = mt.read_csv("zoo2.csv")
+animals_df = prg.read_csv("zoo2.csv")
 
 # print(animals_df.head())
 
@@ -24,9 +24,9 @@ def process():
         answers_list = data['answers']
         # print(answers_list)
         
-        list_of_animals = mt.get_animals_list(animals_df)
+        list_of_animals = prg.get_animals_list(animals_df)
         
-        best_animal_name = mt.find_animal(list_of_animals, answers_list)
+        best_animal_name = prg.find_animal(list_of_animals, answers_list)
         
         print(best_animal_name)
                 
@@ -36,7 +36,7 @@ def process():
     
 @app.route('/data') #user can go to this route and see the data
 def data():
-    questions_data = mt.return_questions(animals_df)
+    questions_data = prg.return_questions(animals_df)
     return {"data" : questions_data}
 
 # this route is used to add a new animal to the csv, if it does not already exist in the file
@@ -52,10 +52,10 @@ def addAnimal():
         data['animal'] = data['animal'].lower()
         
         # add animal and answers list to csv, if not already in csv
-        animal_added = mt.append_to_csv(data['animal'], data['answers'], animals_df)
+        animal_added = prg.append_to_csv(data['animal'], data['answers'], animals_df)
         
         if animal_added:
-            animals_df = mt.read_csv("zoo2.csv") #reread csv and update global variable so data is up to date when page is refreshed
+            animals_df = prg.read_csv("zoo2.csv") #reread csv and update global variable so data is up to date when page is refreshed
             return {'message' : 'New animal added!'}
         else:
             return {'message' : 'This animal is already in the system. We must have guessed wrong, sorry.'}
