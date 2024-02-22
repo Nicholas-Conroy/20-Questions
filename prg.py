@@ -74,18 +74,16 @@ def similarity (a, b):
 def find_animal (sample_animals, answer):
     best_match = 0
     best_match_animal_name = None
-    best_match_id = None
+    # best_match_id = None
 
     for animal in sample_animals:
         comparison_result = similarity(animal.get_id(), answer)
         if comparison_result > best_match:
             best_match = comparison_result
             best_match_animal_name = animal.get_name()
-            best_match_id = animal.get_id()
+            # best_match_id = animal.get_id()
             
-            # maybe just do best match as a the animal object, and use the methods later for output (saves on a few variables)
-
     # for displaying numbers
     # print(str(best_match_id) + "    ID")
-    print('percent closeness: ' + str(best_match))
+    # print('percent closeness: ' + str(best_match))
     return best_match_animal_name
