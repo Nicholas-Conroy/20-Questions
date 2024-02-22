@@ -8,7 +8,7 @@ from csv import writer
 def append_to_csv(animal, id_list, df):
     # Check if animal is duplicate
     if check_animal_in_list(animal, df):
-        return None
+        return False
     List = id_list
     # adds animal name into the list ID at position 0
     List.insert(0, animal)
@@ -18,6 +18,7 @@ def append_to_csv(animal, id_list, df):
         writer_object = writer(csvfile)
         writer_object.writerow(List)
         csvfile.close()
+    return True
 # Documentation:
 # https://docs.python.org/3/library/csv.html#module-csv
 
