@@ -28,17 +28,18 @@
         </div>
 
         <div id="next-steps-true">
-            <p>Cool Beans.</p>
+            <p>Amazing!</p>
         </div>
         <div id="next-steps-false">
             <div>
-                <label for="">Oh. What is the name of the animal you were thinking of?</label>
-                <input type="text" id="new-animal" placeholder="Enter animal name">
+                <label for="new-animal">What is the name of the animal you were thinking of?</label>
+                <input type="text" name="new-animal" id="new-animal" placeholder="Enter animal name">
                 <button type="button" id="new-animal-btn" onclick="addAnimal()">Submit</button>
                 <p id="response"></p>
             </div>
         </div>
 
+        <button id="reload-btn" onclick="reloadPage()">Play Again</button>
     </div>
 {% endblock %}
 
