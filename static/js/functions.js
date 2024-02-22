@@ -158,6 +158,7 @@ function submitClick(){
 function correctAnswer(){
     document.getElementById("verify-answer").style.display = "none";
     document.getElementById("next-steps-true").style.display = "block";
+    document.getElementById("reload-btn").style.display = "block"; //display button to reload page and play game again
 }
 
 function wrongAnswer(){
@@ -165,6 +166,8 @@ function wrongAnswer(){
     document.getElementById("next-steps-false").style.display = "block";
 }
 function addAnimal(){
+    document.getElementById("new-animal-btn").disabled = true;
+    
     let new_animal = document.getElementById('new-animal').value;
     // console.log(answers);
 
@@ -186,7 +189,13 @@ function addAnimal(){
     .then(response => response.json())
     .then(data => {
         document.getElementById("response").innerHTML = data.message;
+        document.getElementById("reload-btn").style.display = "block";  //display button to reload page and play game again
+
     })
     
 
+}
+
+function reloadPage(){
+    window.location.reload();
 }

@@ -68,7 +68,7 @@ h1, h4 {
     background-color: rgb(237, 69, 69);
 }
 
-#true-btn:enabled:active, #false-btn:enabled:active, #submit-btn:active, #correct-btn:active, #wrong-btn:active, #new-animal-btn:active {
+#true-btn:enabled:active, #false-btn:enabled:active, #submit-btne:active, #correct-btn:active, #wrong-btn:active, #new-animal-btn:enabled:active {
     box-shadow: none;
     transform: translateY(5px);
 }
@@ -89,13 +89,13 @@ button:disabled {
     display: none;
     padding: 10px;
     padding-inline: 20px;
-    width: 200px;
+    width: 240px;
     border-radius: 10px;
     border: none;
     font-weight: bold;
     color: white;
 
-    font-size: 1em;
+    font-size: 1.2em;
     /* background-color: rgb(); */
     background-color: rgb(59,78,254);
     box-shadow: 0 5px rgb(18, 32, 158);
@@ -127,6 +127,9 @@ button:disabled {
 
 #next-steps-true {
     display: none;
+    font-weight: bold;
+    color: rgb(3, 141, 6);
+    font-size: 1.75em;
 }
 
 #next-steps-false {
@@ -135,6 +138,7 @@ button:disabled {
     margin: auto;
     font-size: 0.8em;
     text-align: center;
+    font-weight: 700;
 }
 
 #verify-answer button {
@@ -176,13 +180,6 @@ button:disabled {
 }
 
 #new-animal {
-    border-radius: 10px;
-    padding: 5px;
-    /* box-shadow: none; */
-    appearance: none;
-}
-
-#new-animal {
     margin: auto;
     display: block;
     margin-top: 20px;
@@ -213,4 +210,8 @@ button:disabled {
     /* background-color: rgb(); */
     background-color: rgb(59,78,254);
     box-shadow: 0 5px rgb(18, 32, 158);
+}
+
+#reload-btn {
+    display: none;
 }
