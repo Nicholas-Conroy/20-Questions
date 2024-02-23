@@ -1,5 +1,6 @@
 import pandas as pd
 from difflib import SequenceMatcher
+import random
 # import warnings
 # warnings.simplefilter(action='ignore', category=FutureWarning)
 from csv import writer
@@ -39,11 +40,13 @@ def return_questions(df):
     columns = list(df.columns[1:])
     return columns
 
+# class that defines an "animal", each animal object has a name and an id (answers) list
 class HotAnimal:
     def __init__(self, name, id_list) -> None:
         self.name = name
         self.id_list = id_list
 
+    # getter methods
     def get_name(self):
         return self.name
     def get_id(self):
@@ -82,6 +85,12 @@ def find_animal (sample_animals, answer):
             best_match_animal_name = animal.get_name()
             # best_match_id = animal.get_id()
             best_match_id = animal.get_id()
+        if comparison_result == best_match:
+            rand_choice = random.choice([0,1])
+            # choose randomly from ties (not perfectly random rn, last option has best chance)
+            if rand_choice == 0:
+                best_match = comparison_result
+                best_match_animal_name = animal.get_name()
             
         # TODO if comparison result equal to best match, randomly choose current or previous, and keep going
             
