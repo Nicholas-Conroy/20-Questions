@@ -46,6 +46,9 @@ window.onload = event => {
             else if(index == 17){
                 question_names_formatted[index] = "Is your animal commonly active at " + elem + "?";
             }
+            else if(index == 19){
+                question_names_formatted[index] = "Is your animal " + elem + " than a house cat?";
+            }
             else {
                 question_names_formatted[index] = "Does your animal have " + elem + "?";
             }
@@ -76,9 +79,6 @@ function shuffleQuestions(qList1, qList2) {
         qList2[i] = qList2[j];
         qList2[j] = temp;     
     }
-
-    console.log(qList1);
-    console.log(qList2);
 }
 
 //submit button only displays after certain number of true/false clicks (currently 5 for testing, will be 20)
@@ -116,13 +116,6 @@ function submitClick(){
         answers.push(questions[x]);
     }
     console.log(answers);
-
-    // fetch('/process') //get data from flask app route that handles the process route
-    // .then(response => response.text())
-    // .then(text => {
-    //     console.log('GET Request')
-    //     console.log(text);
-    // })
 
     fetch('/process', {
 
@@ -169,7 +162,6 @@ function addAnimal(){
     document.getElementById("new-animal-btn").disabled = true;
     
     let new_animal = document.getElementById('new-animal').value;
-    // console.log(answers);
 
     fetch('/addAnimal', {
         //declare what type of content we are sending

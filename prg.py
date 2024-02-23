@@ -4,7 +4,6 @@ from difflib import SequenceMatcher
 # warnings.simplefilter(action='ignore', category=FutureWarning)
 from csv import writer
 
-# Might not work if csv file isinf saved after being written to
 def append_to_csv(animal, id_list, df):
     # Check if animal is duplicate
     if check_animal_in_list(animal, df):
