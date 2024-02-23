@@ -83,6 +83,8 @@ def find_animal (sample_animals, answer):
             best_match_animal_name = animal.get_name()
             best_match_id = animal.get_id()
             
+        # TODO if comparison result equal to best match, randomly choose current or previous, and keep going
+            
             # maybe just do best match as a the animal object, and use the methods later for output (saves on a few variables)
 
     # for displaying numbers

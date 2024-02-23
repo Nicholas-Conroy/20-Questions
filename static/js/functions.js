@@ -28,7 +28,7 @@ window.onload = event => {
 
             //formatting
             if(index == 4 || index == 5 || index == 7 || index == 10 || 
-                index == 13 || index == 14){
+                index == 13 || index == 14 || index == 18){
                     question_names_formatted[index] = "Is your animal " + elem + "?";
                 }
             else if(index == 6 || index == 15 || index == 16){
