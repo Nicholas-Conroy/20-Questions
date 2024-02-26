@@ -68,6 +68,15 @@ def get_animals_list(df):
 
 # similarity checker
 def similarity (a, b):
+# Diff method. Works maybe?
+    # itter = 0
+    # similarity = 0
+    # for item in a:
+    #     if item == b[item]:
+    #         itter += 1
+    # similarity = itter/len(a)
+    # return similarity
+
     # When None is passed, it uses the default comparison function
     return SequenceMatcher(None, a, b).ratio()
 # Documentation: 
