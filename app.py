@@ -15,6 +15,7 @@ def index():
      #knows to check templates folder, just specify file to render
     return render_template("index.html")
     
+# route that processes data entered from user
 @app.route('/process', methods=['GET', 'POST'])
 def process():
     
@@ -22,19 +23,20 @@ def process():
         print('incoming POST')
         data = request.get_json()
         answers_list = data['answers']
-        # print(answers_list)
         
         list_of_animals = prg.get_animals_list(animals_df)
         
         best_animal_name = prg.find_animal(list_of_animals, answers_list)
         
         print(best_animal_name)
-                
+        
+        # returns animal name that best matches their guesses
         return {'total': best_animal_name}
     else:
-        return 'Go away'
+        return 'Invalid access'
     
-@app.route('/data') #user can go to this route and see the data
+# route that sends data for animal questions, used for interface
+@app.route('/data')
 def data():
     questions_data = prg.return_questions(animals_df)
     return {"data" : questions_data}
@@ -60,7 +62,7 @@ def addAnimal():
         else:
             return {'message' : 'This animal is already in the system. We must have guessed wrong, sorry.'}
     else:
-        return "Go away"
+        return "Invalid access"
     
 if __name__ == '__main__': 
-    app.run(debug=True) #display errors on page, for now
+    app.run(debug=True) #display errors on page, for debugging

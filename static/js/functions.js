@@ -67,7 +67,7 @@ window.onload = event => {
 }
 
 
-//understand this fully later
+//shuffle question arrays
 function shuffleQuestions(qList1, qList2) {
     for (let i = qList1.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -81,7 +81,7 @@ function shuffleQuestions(qList1, qList2) {
     }
 }
 
-//submit button only displays after certain number of true/false clicks (currently 5 for testing, will be 20)
+//submit button only displays after 20 true/false clicks 
 function trueClick(){
     //get current question name and find it in object, change "answered" value to 1 for respective question
     current_question_unf = question_names_unformatted[buttonCounter];
@@ -135,9 +135,9 @@ function submitClick(){
     .then(data => {
         console.log(data)
 
-        //TODO: fix the var names
         let animal_result = data.total;
 
+        //display and hide content containers to transition to displaying results
         document.getElementById("question-container").style.display = "none";
         document.getElementById("submit-container").style.display = "none";
 

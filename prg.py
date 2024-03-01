@@ -1,8 +1,6 @@
 import pandas as pd
 from difflib import SequenceMatcher
 import random
-# import warnings
-# warnings.simplefilter(action='ignore', category=FutureWarning)
 from csv import writer
 
 def append_to_csv(animal, id_list, df):
@@ -22,7 +20,7 @@ def append_to_csv(animal, id_list, df):
 # Documentation:
 # https://docs.python.org/3/library/csv.html#module-csv
 
-
+# check if animal is already in csv
 def check_animal_in_list(animal, df):
     animal_names = []
     for animal_name, row in df.iterrows():
@@ -34,8 +32,8 @@ def check_animal_in_list(animal, df):
 
 def read_csv(csv):
     return pd.read_csv(csv)    
-    
 
+# get question names
 def return_questions(df):
     columns = list(df.columns[1:])
     return columns
@@ -87,12 +85,10 @@ def find_animal (sample_animals, answer):
             best_match_id = animal.get_id()
         if comparison_result == best_match:
             rand_choice = random.choice([0,1])
-            # choose randomly from ties (not perfectly random rn, last option has best chance)
+            # choose randomly from ties (not perfectly random, last option has best chance)
             if rand_choice == 0:
                 best_match = comparison_result
                 best_match_animal_name = animal.get_name()
-            
-        # TODO if comparison result equal to best match, randomly choose current or previous, and keep going
             
     # for displaying numbers
     # print(str(best_match_id) + "    ID")
