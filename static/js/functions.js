@@ -31,8 +31,11 @@ window.onload = event => {
                 index == 13 || index == 14 || index == 18){
                     question_names_formatted[index] = "Is your animal " + elem + "?";
                 }
-            else if(index == 6 || index == 15 || index == 16){
+            else if(index == 15 || index == 16){
                 question_names_formatted[index] = "Is your animal a " + elem + "?";
+            }
+            else if(index == 6){
+                question_names_formatted[index] = "Is your animal primarily a " + elem + "?";
             }
             else if(index == 8 || index == 12){
                 question_names_formatted[index] = "Does your animal have a " + elem + "?";
